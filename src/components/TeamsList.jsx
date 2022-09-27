@@ -11,7 +11,6 @@
  */
 
 import { useState } from 'react';
-import { useEffect } from 'react/cjs/react.production.min';
 
 const TEAMS = [
 	{
@@ -68,35 +67,27 @@ const TEAMS = [
 
 const TeamsList = () => {
 	const [teams, setTeams] = useState(TEAMS);
-	
+
 	const getTotalScore = games => {
 		let totalScore = 0;
 		games.forEach(game => (totalScore += game.score));
-		console.log(totalScore);
 		return totalScore;
 	};
-	
-	const getTeamsWithTotalScores = () => {
-		teams.forEach( (team, index) => {
-			let totalScore = getTotalScore(team.games);
-			setTeams(teams.push(...team, totalScore));
-			teams.splice(index);
-		})
-	}
-
-	useEffect(() => {
-		getTeamsWithTotalScores();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
 
 	// Order teams by score (highest to lowest)
 	const orderTeamByScoreHighestToLowest = () => {
-		setTeams(teams.sort((a, b) => a.totalScore - b.totalScore));
+		const sortedTeams = teams.sort(
+			(a, b) => getTotalScore(b.games) - getTotalScore(a.games),
+		);
+		setTeams([...sortedTeams]);
 	};
 
 	// Order teams by score (lowest to highest)
 	const orderTeamByScoreLowestToHighest = () => {
-		setTeams(teams.sort((a, b) => b.totalScore - a.totalScore));
+		const sortedTeams = teams.sort(
+			(a, b) => getTotalScore(a.games) - getTotalScore(b.games),
+		);
+		setTeams([...sortedTeams]);
 	};
 
 	// Filtering teams that with at least 3 players
@@ -120,8 +111,8 @@ const TeamsList = () => {
 
 			{teams && (
 				<ul className="teams">
-					{teams.map((team, index) => (
-						<li key={index}>
+					{teams.map(team => (
+						<li key={team.name}>
 							<span>{'Team Name: ' + team.name}</span>
 							<span>{'Players Quantity: ' + team.players.length}</span>
 							<span>{'Total Score: ' + getTotalScore(team.games)}</span>
