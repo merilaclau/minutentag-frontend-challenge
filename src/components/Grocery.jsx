@@ -21,31 +21,42 @@
  *     </li>
  *   </ul>
  */
+import { useState } from 'react';
 
-function Product(props) {
-	function handlePlus() {
-		// logic to vote a product
-	}
+const Product = ({ name, votes }) => {
+	const [productVotes, setProductVotes] = useState(votes);
 
-	function handleMinus() {
-		// logic to unvote a product
-	}
+	const handlePlus = () => {
+		setProductVotes(prevProductVotes => prevProductVotes + 1);
+	};
+
+	const handleMinus = () => {
+		setProductVotes(prevProductVotes => prevProductVotes - 1);
+	};
 
 	return (
 		<li>
 			<span>
-				{/* Product name */} - votes: {/* Number of votes*/}
+				{name} - votes: {productVotes}
 			</span>
 			<button onClick={handlePlus}>+</button>
 			<button onClick={handleMinus}>-</button>
 		</li>
 	);
-}
+};
 
-export function Grocery({ products }) {
+const Grocery = ({ products }) => {
 	return (
 		<ul>
-			{/* Render an array of products, which should call onVote when + or - is clicked */}
+			{products.map(product => (
+				<Product
+					key={product.name}
+					name={product.name}
+					votes={product.votes}
+				/>
+			))}
 		</ul>
 	);
-}
+};
+
+export default Grocery;
