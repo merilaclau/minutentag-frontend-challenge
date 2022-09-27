@@ -1,18 +1,23 @@
+import cat01 from './assets/cat_01.jpeg';
+import cat02 from './assets/cat_02.jpeg';
+import cat03 from './assets/cat_03.jpeg';
+import cat04 from './assets/cat_04.jpeg';
+
 export const IMG_SRC = [
 	{
-		src: 'https://cataas.com/cat/cute/says/hi?type=sq',
-		alt: 'cat_with_word_hi',
+		src: cat01,
+		alt: 'sitting_cat',
 	},
 	{
-		src: 'https://cataas.com/cat/cute/says/i?type=sq',
-		alt: 'cat_with_word_i',
+		src: cat02,
+		alt: 'cat_with_watermelon',
 	},
 	{
-		src: 'https://cataas.com/cat/cute/says/am?type=sq',
-		alt: 'cat_with_word_am',
+		src: cat03,
+		alt: 'cat_in_garden',
 	},
 	{
-		src: 'https://cataas.com/cat/cute/says/cat?type=sq',
-		alt: 'cat_with_word_cat',
+		src: cat04,
+		alt: 'cat_with_hat',
 	},
 ];
