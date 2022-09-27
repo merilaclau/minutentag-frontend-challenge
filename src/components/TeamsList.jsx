@@ -11,6 +11,7 @@
  */
 
 import { useState } from 'react';
+import { useEffect } from 'react/cjs/react.production.min';
 
 const TEAMS = [
 	{
@@ -65,33 +66,71 @@ const TEAMS = [
 	},
 ];
 
-export function TeamsList() {
+const TeamsList = () => {
 	const [teams, setTeams] = useState(TEAMS);
+	
+	const getTotalScore = games => {
+		let totalScore = 0;
+		games.forEach(game => (totalScore += game.score));
+		console.log(totalScore);
+		return totalScore;
+	};
+	
+	const getTeamsWithTotalScores = () => {
+		teams.forEach( (team, index) => {
+			let totalScore = getTotalScore(team.games);
+			setTeams(teams.push(...team, totalScore));
+			teams.splice(index);
+		})
+	}
+
+	useEffect(() => {
+		getTeamsWithTotalScores();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	// Order teams by score (highest to lowest)
-	function orderTeamByScoreHighestToLowest() {
-		// Write your code here
-	}
+	const orderTeamByScoreHighestToLowest = () => {
+		setTeams(teams.sort((a, b) => a.totalScore - b.totalScore));
+	};
 
 	// Order teams by score (lowest to highest)
-	function orderTeamByScoreLowestToHighest() {
-		// Write your code here
-	}
+	const orderTeamByScoreLowestToHighest = () => {
+		setTeams(teams.sort((a, b) => b.totalScore - a.totalScore));
+	};
 
 	// Filtering teams that with at least 3 players
-	function teamsWithMoreThanThreePlayers() {
-		// Write your code here
-	}
+	const teamsWithMoreThanThreePlayers = () => {
+		setTeams(teams.filter(team => team.players.length >= 3));
+	};
 
 	return (
 		<div>
 			<button onClick={() => setTeams(TEAMS)}>Initial list</button>
 
-			<button>Highest to Lowest</button>
-			<button>Lowest to Highest</button>
-			<button>Teams with at least 3 players</button>
+			<button onClick={orderTeamByScoreHighestToLowest}>
+				Highest to Lowest
+			</button>
+			<button onClick={orderTeamByScoreLowestToHighest}>
+				Lowest to Highest
+			</button>
+			<button onClick={teamsWithMoreThanThreePlayers}>
+				Teams with at least 3 players
+			</button>
 
-			<ul className="teams">{/** Render the list of teams */}</ul>
+			{teams && (
+				<ul className="teams">
+					{teams.map((team, index) => (
+						<li key={index}>
+							<span>{'Team Name: ' + team.name}</span>
+							<span>{'Players Quantity: ' + team.players.length}</span>
+							<span>{'Total Score: ' + getTotalScore(team.games)}</span>
+						</li>
+					))}
+				</ul>
+			)}
 		</div>
 	);
-}
+};
+
+export default TeamsList;

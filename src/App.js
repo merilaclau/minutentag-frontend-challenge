@@ -2,7 +2,7 @@ import Message from './components/Message';
 import { FocusableInput } from './components/FocusableInput';
 import ImageGallery from './components/ImageGallery';
 import PlayerStatus from './components/PlayerStatus';
-import { TeamsList } from './components/TeamsList';
+import TeamsList from './components/TeamsList';
 import { IMG_SRC } from './constants';
 
 import './App.css';
