@@ -1,13 +1,13 @@
 node_modules
-.husky
 .prettierignore
 .idea
 build
 *.json
-*.js
 *.css
 *.png
 *.svg
 .gitignore
 yarn.lock
 .env
+*.jpeg
+*.DS_Store
