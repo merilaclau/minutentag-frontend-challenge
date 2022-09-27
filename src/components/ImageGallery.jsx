@@ -6,20 +6,43 @@
  * It should also implement the following logic:
  * - When the button is clicked, the image that is in the same div as the button should be removed from the gallery.
  */
+import { useState } from 'react';
 
-function Image({ src, onRemove }) {
+const Image = ({ src, alt, onRemove }) => {
 	return (
 		<div class="image">
-			<img />
-			<button class="remove">X</button>
+			<img
+				src={src}
+				alt={alt}
+			/>
+			<button
+				onClick={onRemove}
+				class="remove"
+			>
+				X
+			</button>
 		</div>
 	);
-}
+};
 
-export function ImageGallery({ links }) {
+const ImageGallery = ({ links }) => {
+	const [images, setImages] = useState(links);
+	const removeItem = index => {
+		setImages(images.filter((img, i) => index !== i));
+	};
+
 	return (
 		<div>
-			{/* Implement here the Image Gallery using <Image /> component */}
+			{images.map((img, index) => (
+				<Image
+					key={index}
+					src={img.src}
+					alt={img.alt}
+					onRemove={() => removeItem(index)}
+				/>
+			))}
 		</div>
 	);
-}
+};
+
+export default ImageGallery;
