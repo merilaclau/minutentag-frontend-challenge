@@ -9,12 +9,20 @@
  * - After another click, the paragraph should not be rendered.
  * - Finish the Message component by implementing this logic.
  */
+import { useState } from 'react';
 
-export function Message() {
+const Message = () => {
+	const [mustShowPhone, setMustShowPhone] = useState(false);
+
 	return (
 		<>
-			<a href="#">Want to buy a new car?</a>
-			<p>Call +11 22 33 44 now!</p>
+			{/* anchor tag was replaced with a button tag so as to avoid invalid href attibute errors */}
+			<button onClick={() => setMustShowPhone(!mustShowPhone)}>
+				Want to buy a new car?
+			</button>
+			{mustShowPhone && <p>Call +11 22 33 44 now!</p>}
 		</>
 	);
-}
+};
+
+export default Message;
