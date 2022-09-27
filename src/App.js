@@ -4,6 +4,7 @@ import ImageGallery from './components/ImageGallery';
 import PlayerStatus from './components/PlayerStatus';
 import TeamsList from './components/TeamsList';
 import Grocery from './components/Grocery';
+import Rating from './components/Rating';
 import { IMG_SRC, PRODUCTS } from './constants';
 
 import './App.css';
@@ -32,6 +33,9 @@ export default function App() {
 			<br />
 			<h3>'Grocery' test</h3>
 			<Grocery products={products} />
+			<br />
+			<h3>'Rating' test</h3>
+			<Rating />
 		</div>
 	);
 }

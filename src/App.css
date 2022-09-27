@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.active {
+  color: yellow;
+  -webkit-text-stroke: 1px rgb(104, 104, 104);
+}

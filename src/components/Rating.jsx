@@ -23,7 +23,32 @@
  *  <span>*</span>
  * </div>
  */
+import { useState } from 'react';
 
-export function Rating() {
-	return null;
-}
+const Rating = () => {
+	const [activeIndex, setActiveIndex] = useState(null);
+	const [isClicked, setIsClicked] = useState(false);
+
+	const handleClick = index => {
+		setIsClicked(true);
+		setActiveIndex(index);
+	};
+
+	return (
+		<>
+			{[...Array(5)].map((star, index) => (
+				<span
+					className={
+						isClicked ? (index <= activeIndex ? 'active' : null) : null
+					}
+					onClick={() => handleClick(index)}
+					key={index}
+				>
+					&#9733;
+				</span>
+			))}
+		</>
+	);
+};
+
+export default Rating;
