@@ -31,6 +31,7 @@ button {
   height: 30px;
   padding: 6px 10px;
   margin: 2px;
+  cursor: pointer;
 }
 
 /*TEST CONTAINER COMPONENT STYLES*/
@@ -50,6 +51,7 @@ button {
 .ratingContainer {
   display: flex;
   align-self: center;
+  cursor: pointer;
 }
 
 .active {
