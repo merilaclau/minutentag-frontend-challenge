@@ -34,6 +34,14 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  background-color: rgb(43, 165, 143);
+}
+
+button:disabled {
+  background-color: rgb(145, 162, 159);
+}
+
 /*TEST CONTAINER COMPONENT STYLES*/
 .testContainer {
   width: 320px;

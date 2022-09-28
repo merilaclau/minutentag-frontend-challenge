@@ -31,7 +31,7 @@ const Product = ({ name, votes }) => {
 	};
 
 	const handleMinus = () => {
-		setProductVotes(prevProductVotes => prevProductVotes - 1);
+		setProductVotes(prevProductVotes => prevProductVotes === 0 ? prevProductVotes : prevProductVotes - 1);
 	};
 
 	return (
@@ -43,6 +43,7 @@ const Product = ({ name, votes }) => {
 				<button
 					className={'votesButton'}
 					onClick={handleMinus}
+					disabled={!productVotes}
 				>
 					-
 				</button>
