@@ -50,6 +50,7 @@ const ListItemsForNavigation = props => {
 				<li
 					ref={activeIndex === index ? activeItemRef : null}
 					tabIndex={0}
+					key={index}
 				>
 					{item.name}
 				</li>

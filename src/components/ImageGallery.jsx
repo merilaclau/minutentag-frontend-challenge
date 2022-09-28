@@ -34,7 +34,7 @@ const ImageGallery = ({ links }) => {
 	return (
 		<div className={'galleryContainer'}>
 			{images.map((img, index) => (
-				<div className={'imageContainer'}>
+				<div key={index} className={'imageContainer'}>
 					<Image
 						key={index}
 						src={img.src}
