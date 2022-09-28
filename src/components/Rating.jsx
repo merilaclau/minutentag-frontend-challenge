@@ -35,7 +35,7 @@ const Rating = () => {
 	};
 
 	return (
-		<>
+		<div className={'ratingContainer'}>
 			{[...Array(5)].map((star, index) => (
 				<span
 					className={
@@ -47,7 +47,7 @@ const Rating = () => {
 					&#9733;
 				</span>
 			))}
-		</>
+		</div>
 	);
 };
 

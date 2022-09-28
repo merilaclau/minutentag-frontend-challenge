@@ -113,9 +113,13 @@ const TeamsList = () => {
 				<ul className="teams">
 					{teams.map(team => (
 						<li key={team.name}>
-							<span>{'Team Name: ' + team.name}</span>
-							<span>{'Players Quantity: ' + team.players.length}</span>
-							<span>{'Total Score: ' + getTotalScore(team.games)}</span>
+							<span className={'teamItem'}>{'Team: ' + team.name}</span>
+							<span className={'teamItem'}>
+								{'Players: ' + team.players.length}
+							</span>
+							<span className={'teamItem'}>
+								{'Total Score: ' + getTotalScore(team.games)}
+							</span>
 						</li>
 					))}
 				</ul>

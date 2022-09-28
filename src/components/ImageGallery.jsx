@@ -10,16 +10,16 @@ import { useState } from 'react';
 
 const Image = ({ src, alt, onRemove }) => {
 	return (
-		<div class="image">
+		<div>
 			<img
 				src={src}
 				alt={alt}
 			/>
 			<button
 				onClick={onRemove}
-				class="remove"
+				className={'removeButton'}
 			>
-				X
+				x
 			</button>
 		</div>
 	);
@@ -32,14 +32,16 @@ const ImageGallery = ({ links }) => {
 	};
 
 	return (
-		<div>
+		<div className={'galleryContainer'}>
 			{images.map((img, index) => (
-				<Image
-					key={index}
-					src={img.src}
-					alt={img.alt}
-					onRemove={() => removeItem(index)}
-				/>
+				<div className={'imageContainer'}>
+					<Image
+						key={index}
+						src={img.src}
+						alt={img.alt}
+						onRemove={() => removeItem(index)}
+					/>
+				</div>
 			))}
 		</div>
 	);

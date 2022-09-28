@@ -35,12 +35,24 @@ const Product = ({ name, votes }) => {
 	};
 
 	return (
-		<li>
+		<li className={'productsContainer'}>
 			<span>
 				{name} - votes: {productVotes}
 			</span>
-			<button onClick={handlePlus}>+</button>
-			<button onClick={handleMinus}>-</button>
+			<div>
+				<button
+					className={'votesButton'}
+					onClick={handleMinus}
+				>
+					-
+				</button>
+				<button
+					className={'votesButton'}
+					onClick={handlePlus}
+				>
+					+
+				</button>
+			</div>
 		</li>
 	);
 };

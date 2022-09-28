@@ -54,7 +54,7 @@ const ListItemsForNavigation = props => {
 					{item.name}
 				</li>
 			))}
-			</ul>
+		</ul>
 	);
 };
 
