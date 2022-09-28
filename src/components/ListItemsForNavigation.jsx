@@ -14,33 +14,48 @@ import { useEffect, useRef, useState } from 'react';
 
 // Simulating a list of items to render.
 // This can be passed through props as well. The constant is declared here for convenience
-const itemsList = Array(10).fill({
-	/** Add the properties you consider, there are no specific requirements related to what you have to render. Be creative :) */
-});
+const itemsList = [
+	{ name: '🚃 Railway' },
+	{ name: '🚌 Bus' },
+	{ name: '🚗 Car' },
+	{ name: '🚀 Rocket' },
+	{ name: '🚁 Helicopter' },
+];
 
-export function ListItemsForNavigation(props) {
-	const [selectedIndex, setSelectedIndex] =
-		useState(/** Initialize the state as you need */);
-	const activeItemRef = useRef();
+const ListItemsForNavigation = props => {
+	const [activeIndex, setActiveIndex] = useState(-1);
+	const activeItemRef = useRef(null);
 
-	useEffect(
-		function () {
-			// Focus the item using this effect
-		},
-		[
-			/* Use accordingly the dependencies */
-		],
-	);
+	useEffect(() => {
+		if (activeItemRef.current && document.activeElement !== activeItemRef) {
+			activeItemRef.current.focus();
+		}
+	}, [activeIndex]);
 
-	function handleKeyDown(event) {
-		// Add the proper logic to calculate the index that correspond to the item that should be focused.
-	}
+	const handleKeyDown = event => {
+		if (event.keyCode === 37 || event.keyCode === 40) {
+			setActiveIndex(prevValue =>
+				prevValue < itemsList.length ? prevValue + 1 : prevValue,
+			);
+		} else if (event.keyCode === 38 || event.keyCode === 39) {
+			setActiveIndex(prevValue =>
+				prevValue === 0 ? prevValue : prevValue - 1,
+			);
+		}
+	};
 
 	return (
 		<ul onKeyDown={handleKeyDown}>
-			{/** Render itemsList as you wish, probably you want to render <li></li> with the proper attributes */}
-			{/** If you have issues focusing an element, it is probably because the element is not focusable originally. Try with tabIndex={0} */}
-			{/** Do not forget to pass the reference to the selected item */}
-		</ul>
+			{itemsList.map((item, index) => (
+				<li
+					ref={activeIndex === index ? activeItemRef : null}
+					tabIndex={0}
+				>
+					{item.name}
+				</li>
+			))}
+			</ul>
 	);
-}
+};
+
+export default ListItemsForNavigation;
