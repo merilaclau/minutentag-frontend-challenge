@@ -37,6 +37,10 @@
   }
 }
 
+ul {
+  list-style-type: none;
+}
+
 .active {
   color: yellow;
   -webkit-text-stroke: 1px rgb(104, 104, 104);
